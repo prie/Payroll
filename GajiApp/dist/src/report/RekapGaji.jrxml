@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="gaji_rekap" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="bulan" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="tahun" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT * FROM gaji_rekap where bulan=$P{bulan} AND tahun=$P{tahun}]]>
+	</queryString>
+	<field name="idGaji" class="java.lang.Integer"/>
+	<field name="noSlip" class="java.lang.String"/>
+	<field name="idAbsen" class="java.lang.Integer"/>
+	<field name="nmPegawai" class="java.lang.String"/>
+	<field name="nmJbtn" class="java.lang.String"/>
+	<field name="gapok" class="java.lang.Double"/>
+	<field name="bulan" class="java.lang.String"/>
+	<field name="tahun" class="java.lang.Integer"/>
+	<field name="jmlHrKrj" class="java.lang.Integer"/>
+	<field name="hrHadirJm" class="java.lang.Integer"/>
+	<field name="awlGaji" class="java.lang.Double"/>
+	<field name="insentif" class="java.lang.Double"/>
+	<field name="bonus" class="java.lang.Double"/>
+	<field name="ktrGaji" class="java.lang.Double"/>
+	<field name="ttlPotong" class="java.lang.Double"/>
+	<field name="brshGaji" class="java.lang.Double"/>
+	<field name="tglRekap" class="java.sql.Date"/>
+	<field name="idUser" class="java.lang.Integer"/>
+	<field name="admin" class="java.lang.String"/>
+	<variable name="noSlip_1" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[$F{noSlip}]]></variableExpression>
+	</variable>
+	<variable name="insentif_1" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{insentif}]]></variableExpression>
+	</variable>
+	<variable name="bonus_1" class="java.lang.Double" resetType="Column" calculation="Sum">
+		<variableExpression><![CDATA[$F{bonus}]]></variableExpression>
+	</variable>
+	<variable name="awlGaji_1" class="java.lang.Double" resetType="Column" calculation="Sum">
+		<variableExpression><![CDATA[$F{awlGaji}]]></variableExpression>
+	</variable>
+	<variable name="ktrGaji_1" class="java.lang.Double" resetType="Column" calculation="Sum">
+		<variableExpression><![CDATA[$F{ktrGaji}]]></variableExpression>
+	</variable>
+	<variable name="brshGaji_1" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{brshGaji}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="64" splitType="Stretch">
+			<staticText>
+				<reportElement x="153" y="0" width="244" height="15"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PT. EXOTIC TROPICAL RAINFOREST]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="158" y="15" width="239" height="15"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="11"/>
+				</textElement>
+				<text><![CDATA[Jl. Laksda Adisucipto KM. 7,5 Santan No. 7 Sleman]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="219" y="30" width="115" height="15"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="11"/>
+				</textElement>
+				<text><![CDATA[Yogyakarta - Indonesia]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="200" y="45" width="154" height="15"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="11"/>
+				</textElement>
+				<text><![CDATA[Phone & Fax : +62 274 489228]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="61" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="3.0" lineStyle="Double"/>
+				</graphicElement>
+			</line>
+			<image>
+				<reportElement x="82" y="0" width="71" height="60"/>
+				<imageExpression><![CDATA["C:\\java-app\\GajiApp\\logo\\logo_tok.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="49" splitType="Stretch">
+			<textField>
+				<reportElement x="48" y="14" width="71" height="15"/>
+				<textElement>
+					<font size="11" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bulan}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="48" y="29" width="71" height="15"/>
+				<textElement>
+					<font size="11" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tahun}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="193" y="0" width="166" height="14"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[LAPORAN PENGGAJIAN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="14" width="48" height="15"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Bulan :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="29" width="48" height="15"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tahun :]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="46" width="555" height="1"/>
+			</line>
+			<textField>
+				<reportElement x="474" y="29" width="81" height="15"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{admin}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="414" y="29" width="60" height="15"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[Personalia :]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="53" splitType="Stretch">
+			<staticText>
+				<reportElement x="78" y="0" width="100" height="16"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nama Pegawai]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="50" width="555" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="78" y="16" width="100" height="16"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Jabatan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="78" y="32" width="100" height="16"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Gaji Pokok]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="178" y="0" width="100" height="16"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Hari Kerja]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="178" y="16" width="100" height="16"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Hari Hadir]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="178" y="32" width="100" height="16"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Gaji Awal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="278" y="0" width="76" height="16"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Insentif]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="278" y="32" width="76" height="16"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Gaji Kotor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="278" y="16" width="76" height="16"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Bonus]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="354" y="0" width="89" height="16"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Potongan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="354" y="32" width="89" height="16"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Gaji Bersih]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="446" y="0" width="100" height="16"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tanda Tangan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="78" height="16"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[No. Slip Gaji]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="53" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="78" height="16"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{noSlip}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="78" y="0" width="100" height="16"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{nmPegawai}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="50" width="555" height="1"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement x="78" y="16" width="100" height="16"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{nmJbtn}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0">
+				<reportElement x="78" y="32" width="59" height="16"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{gapok}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="178" y="0" width="59" height="16"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{jmlHrKrj}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="178" y="16" width="59" height="16"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{hrHadirJm}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0">
+				<reportElement x="178" y="32" width="59" height="16"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{awlGaji}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="278" y="0" width="53" height="16"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{insentif}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0">
+				<reportElement x="278" y="32" width="53" height="16"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{ktrGaji}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="278" y="16" width="53" height="16"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{bonus}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="354" y="0" width="65" height="16"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{ttlPotong}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0">
+				<reportElement x="354" y="32" width="65" height="16"/>
+				<textElement textAlignment="Right">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{brshGaji}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="446" y="47" width="100" height="1"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="39" splitType="Stretch">
+			<textField>
+				<reportElement x="231" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="446" y="19" width="109" height="20"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[By : http://escripto.com]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="96" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="78" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{noSlip_1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0">
+				<reportElement x="355" y="0" width="64" height="20"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{brshGaji_1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd MMMMM yyyy">
+				<reportElement x="455" y="20" width="100" height="16"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="394" y="20" width="61" height="16"/>
+				<textElement/>
+				<text><![CDATA[Yogyakarta,]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="416" y="36" width="114" height="16"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Chief Executive Officer]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="443" y="74" width="67" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Herry Prasetyo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="254" y="0" width="100" height="20"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Total :]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>
