@@ -1,2 +1,2 @@
 # Payroll
-Java desktop application to calculate employer fee.
+Java desktop application to calculate employee fee.
